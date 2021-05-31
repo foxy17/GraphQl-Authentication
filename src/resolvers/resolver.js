@@ -14,8 +14,8 @@ const resolvers = {
                     limit:5,
                     raw: true,
                     //this is done to flaten out the join command
-                    attributes: ['firstName','lastName','email','employeeId','company.company',],
-                    include: [{ model: models.Company ,attributes: []}]
+                    attributes: ['firstName','lastName','email','employeeId','Company.company',],
+                    include: [{ model: models.Company,attributes:[]}]
                     }
                     //by defaults query is paginated to limit 5 items
                 if(pagination){
@@ -36,7 +36,7 @@ const resolvers = {
                         [sort, 'ASC'],
                     ];
                 }
-                return models.User.findAll(query)
+                return await models.User.findAll(query);
             } catch (error) {
                 throw new Error(error.message)
             }
