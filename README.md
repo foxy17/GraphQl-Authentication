@@ -36,7 +36,7 @@ Schema is at the core of any GraphQL and defines the functionality available to 
 
 ## Database design
 There are two tables the user table which has employeeId as primary and foreign key and has all user details except for the company. The company table which has employeeId as primary and foreign key and a company column.
-
+<img src="schema.jpg" />
 
 # Graphql Queries available
 
