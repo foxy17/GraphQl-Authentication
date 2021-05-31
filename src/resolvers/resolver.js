@@ -10,10 +10,14 @@ const resolvers = {
                 if(!user) throw new Error('You are not authenticated!')
                 const {search,pagination,sort} =args;
                 var query={
+                    offset:0,
+                    limit:5,
                     raw: true,
+                    //this is done to flaten out the join command
                     attributes: ['firstName','lastName','email','employeeId','company.company',],
                     include: [{ model: models.Company ,attributes: []}]
                     }
+                    //by defaults query is paginated to limit 5 items
                 if(pagination){
                     query.limit=pagination.items;
                     query.offset=pagination.items*(pagination.page-1)
@@ -84,7 +88,6 @@ const resolvers = {
                 if (!user) {
                     throw new Error('No user with that email')
                 }
-
                 const isValid = await models.User.validPassword(password, user.password)
                 if (!isValid) {
                     throw new Error('Incorrect password')
