@@ -3,16 +3,16 @@ A simple graphql and apollo server API for JWT based authentication.
 
 ## Folder Structure:-
 
-**Config**
+### **Config**
 Contains config.js file where the configuration for MySQL database is defined which is required for connecting to the database.
 
-**Migrations**
+### **Migrations**
 Contains sequelize migrations models for company and user tables. These define parameters for when we run the initial create table command on our database.
 
-**src**
+### **src**
 Source files that have most of the server code. Migrations and Config are not inside src folder since they are only used once initially before running the code and not while the code is running.
 
-**src/models**           
+### **src/models**           
 Contains SQL models for company and user in respective files. User has a hook which has functions that run before certain type of queries.
 
 `beforeCreate` this hook is called when create query is being called. The hook contains logic to hash the password with a salt so that we don’t store un-encrypted password in database.
@@ -22,7 +22,7 @@ Contains SQL models for company and user in respective files. User has a hook wh
 
 The *`index.js`* contains the code for connecting seqelize to database. It also takes all the models defined in the models folder, and it applies them to the “db” object. so if you have a model in the models folder, and it’s name is “User”, it will be found on the db object as db.User 
 
-**src/resolver**
+### **src/resolver**
 Resolvers contain the functions that are called for respective query and mutaion. They take in 4 arguments 
 1. `root` contains the result returned from the resolver on the parent field.
 2. `args` arguments passed into the field in the query.
@@ -31,7 +31,7 @@ Resolvers contain the functions that are called for respective query and mutaion
 
 The `query` object in `getUserList` is a dynamic object which changes values based on arguments passed to the query.All arguments are optional.All queries require an Authorization header with valid jwt token.
 
-**src/schema**
+### **src/schema**
 Schema is at the core of any GraphQL and defines the functionality available to the client applications that connect to it, also defines all the query and mutations the client can use along with their parameters and what data type they return.
 
 ## Database design
