@@ -61,7 +61,7 @@ const resolvers = {
                     lastName,
                     employeeId,
                     email,
-                    password: password
+                    password
                 })
                 const companyModel = await models.Company.create({
                     employeeId,
@@ -72,9 +72,16 @@ const resolvers = {
                     process.env.JWT_SECRET,
                     { expiresIn: '1y' }
                 )
+                let createdUser={
+                    company:companyModel.company,
+                    employeeId: user.employeeId,
+                    firstName: user.firstName, 
+                    lastName: user.lastName, 
+                    email: user.email
+                }
 
                 return {
-                    token, employeeId: companyModel.employeeId, firstName: user.firstName, email: user.email, message: "Registration succesfull"
+                    token, user:createdUser, message: "Registration succesfull"
                 }
             } catch (error) {
                 throw new Error(error.message)

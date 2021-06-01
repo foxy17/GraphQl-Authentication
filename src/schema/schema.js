@@ -14,7 +14,7 @@ const typeDefs = gql`
         employeeId: Int!
         firstName: String!
         lastName: String!
-        password: String!
+        password: String
         email: String!
         company: String!
     }
